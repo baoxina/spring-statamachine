@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.StateMachine;
 
-import com.baoxina.statemachine.OrderPersistStateChangeListener;
 import com.baoxina.statemachine.PersistStateMachineHandler;
 import com.baoxina.statemachine.entity.OrderEvents;
 import com.baoxina.statemachine.entity.OrderStatus;
@@ -26,7 +25,7 @@ public class OrderPersistHandlerConfig {
 
 
     @Bean
-    public OrderStateService persist() {
+    public OrderStateService orderStateService() {
         PersistStateMachineHandler handler = persistStateMachineHandler();
         handler.addPersistStateChangeListener(orderPersistStateChangeListener);
         return new OrderStateService(handler);
