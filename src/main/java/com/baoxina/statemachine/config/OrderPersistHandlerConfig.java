@@ -1,5 +1,7 @@
 package com.baoxina.statemachine.config;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +17,9 @@ import com.baoxina.statemachine.service.OrderStateService;
 @Configuration
 public class OrderPersistHandlerConfig {
 
+	@Resource(name="orderPersistStateChangeListener")
+	private OrderPersistStateChangeListener orderPersistStateChangeListener;
+	
     @Autowired
     @Qualifier("orderStateMachine")
     private StateMachine<OrderStatus, OrderEvents> orderStateMachine;
@@ -23,18 +28,13 @@ public class OrderPersistHandlerConfig {
     @Bean
     public OrderStateService persist() {
         PersistStateMachineHandler handler = persistStateMachineHandler();
-        handler.addPersistStateChangeListener(persistStateChangeListener());
+        handler.addPersistStateChangeListener(orderPersistStateChangeListener);
         return new OrderStateService(handler);
     }
 
     @Bean
     public PersistStateMachineHandler persistStateMachineHandler() {
         return new PersistStateMachineHandler(orderStateMachine);
-    }
-
-    @Bean
-    public OrderPersistStateChangeListener persistStateChangeListener(){
-        return new OrderPersistStateChangeListener();
     }
 
 

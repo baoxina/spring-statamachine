@@ -5,6 +5,7 @@ import org.springframework.messaging.Message;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.state.State;
 import org.springframework.statemachine.transition.Transition;
+import org.springframework.stereotype.Component;
 
 import com.baoxina.statemachine.dao.OrderRepo;
 import com.baoxina.statemachine.entity.Order;
@@ -12,6 +13,7 @@ import com.baoxina.statemachine.entity.OrderEvents;
 import com.baoxina.statemachine.entity.OrderStatus;
 import com.baoxina.statemachine.listener.PersistStateChangeListener;
 
+@Component("orderPersistStateChangeListener")
 public class OrderPersistStateChangeListener implements PersistStateChangeListener {
     @Autowired
     private OrderRepo repo;
