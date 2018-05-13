@@ -12,7 +12,6 @@ import com.baoxina.statemachine.dao.OrderRepo;
 import com.baoxina.statemachine.entity.Order;
 import com.baoxina.statemachine.entity.OrderEvents;
 
-@Component
 public class OrderStateService {
 
     private PersistStateMachineHandler handler;
