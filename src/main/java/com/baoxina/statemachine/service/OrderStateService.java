@@ -5,7 +5,6 @@ import java.util.StringJoiner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.support.MessageBuilder;
-import org.springframework.stereotype.Component;
 
 import com.baoxina.statemachine.PersistStateMachineHandler;
 import com.baoxina.statemachine.dao.OrderRepo;
